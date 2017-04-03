@@ -1,0 +1,4 @@
+.latex
+*.sync*
+*.log
+data/
