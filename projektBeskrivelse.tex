@@ -1,0 +1,174 @@
+% Opsætter KU Tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage[a4paper, hmargin={2.8cm, 2.8cm}, vmargin={2.5cm, 2.5cm}]{geometry}
+\usepackage{eso-pic}  % \AddToShipoutPicture
+\usepackage{graphicx} % \includegraphics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Pakker til skrifttyper, tekst osv.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \usepackage[utf8]{inputenc} % Implementere Unicode
+    \usepackage[T1]{fontenc}    % Unicode skrifttype, fx. é skrives som 1 tegn
+    \usepackage[danish]{babel}  % Dansk Ordbog
+    \usepackage{microtype}      % Forbedre linjeombrydningen
+    \usepackage{libertine}      % Skrifttype
+    \usepackage[scaled=0.83]{inconsolata} % Skrifttype til kode til kode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Pakker til matematik og kode.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{mathtools}       % Udvidelse til amsmath pakken
+    \usepackage{algpseudocode}   % pseudocode til algoritmer
+    \usepackage{algorithm}       % Pakke til algoritmer
+    \usepackage{amsthm}          % Pakke til Theroms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Pakker til layout.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \usepackage{fancyhdr}        % Gør det muligt at bruge sidehoveder
+    \usepackage{graphicx}        % Mulighed for bl.a. \includegraphics
+    \usepackage{parskip}         % Første paragraf i afsnit indrykkes ikke
+    \usepackage{listings}        % Pakke til at indsætte kode
+    \usepackage{enumitem}        % Gør det muligt at tilpasse lister
+    \usepackage{titlesec}        % Tilpassing af afstand mellem sektioner
+    \usepackage[lastpage,user]{zref} % Side x af y
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\usepackage{url}
+
+% Implementerer en række makroer og de pakker der er importeret
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \pagestyle{fancy}                        % Implementerer sidehoved
+    \lhead{Benjamin Rotendahl} % Venstre sidehoved
+    \rhead{Hjernespil}      % Højre sidehoved
+    \cfoot{\thepage\ of \zpageref{LastPage}} % Side x af y
+    \newtheorem*{prp}{Propostion}            % Skaber nyt theorem
+    \setlist{nolistsep}              % Formindsker mellemrum mellem listepunkter
+
+    % Definitioner af farver
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \definecolor{KURed1}{RGB}{144,26,30}    % Official KU Red 1
+        \definecolor{KURed2}{RGB}{199,36,41}    % Unofficial KU Red
+        \definecolor{KUGray1}{RGB}{102,102,102} % Official KU Gray 1
+        \definecolor{KUGray2}{RGB}{133,133,133} % Official KU Gray 2
+        \definecolor{KUGray3}{RGB}{163,163,163} % Official KU Gray 3
+        \definecolor{KUGray4}{RGB}{194,194,194} % Official KU Gray 4
+        \definecolor{KUGray5}{RGB}{224,224,224} % Official KU Gray 5
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Mindsker afstanden mellem sektioner
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \titlespacing\section{0pt}{12pt plus 4pt minus 2pt}
+                                  {0pt plus 1pt minus 3pt}
+        \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}
+                                  {0pt plus 1pt minus 3pt}
+        \titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}
+                                  {0pt plus 1pt minus 3pt}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Laver titel
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \title{
+      \vspace{13em}
+      \Large{Data Training for Librarians} \\
+      \Huge{An introduction to programming and data manipulation}
+    }
+
+    \author{
+        \Large{Arinbjörn Brandsson - arbr@di.ku.dk} \\
+        \Large{Benjamin Rotendahl - Benjamin@Rotendahl.dk} \\
+    }
+
+    \date{
+        \vspace{22em}
+        \today \\
+    }
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%      Her starter dokumentet    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+    %% Change `ku-farve` to `nat-farve` to use SCIENCE's old colors or
+    %% `natbio-farve` to use SCIENCE's new colors and logo.
+    \clearpage
+
+%Disse linjer skaber forside, evt indholdsfortegnelse, og sætter sidetal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \maketitle              % Forside
+    \thispagestyle{empty}   % Fjerner sidetal forside
+    \newpage                % Første rigtige side
+    \setcounter{page}{1}    % Sætter rigtigt sidetal på første side
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Workshop beskrivelse}
+    Vi afholder en workshop hvor målet er at give en introduktion til python og
+    hvordan det kan bruges til at manipulere med f.eks \emph{CSV} filer.
+
+\section{Program for dagen}
+    \begin{description}
+        \item[9-10:] Morgenkaffe og hjælp til installation. Før workshoppen
+        har vi sendt en guide ud der viser hvordan man installere de nødvendige
+        ting så vi kan bruge noget af tiden på at introducere programmet.
+
+        \item[10-10.30:] Fremlæggelse med en introduktion til hvad det vil sige
+        at programmere og motivere hvordan programmering kan hjælpe dem.
+
+
+        \item[10.30-12.00:] Små opgaver der leder workshopsdeltagerne igennem
+        de forskellige sprog konstruktioner i python. Der vil blive udleveret et
+        opgave sæt hvor forskellige man bliver præsenteret for en
+        problemstilling. Vi vil løbende opsamle på opgaverne på tavlen.
+
+        \item[12-12.45:] Frokost
+
+        \item[12.45-13.15:] Introduktion til datahåndtering her lærer man hvordan
+        csv filer indlæses og hvilke ting man skal have i mente når man arbejder
+        med store datamængder. Der vil være eksempler oppe på projektoren hvor
+        man laver simpel analyse på et datasæt.
+
+
+        \item[13.15-14.30:] En større opgave hvor deltagerne skal
+        skrive et program der samler en csv fil og tilføjer forskellige
+        opsummeringer af data til rækkerne.
+
+        \item[14.30-16.30:] Deltagerne finder selv på en opgave de ønsker at
+        løse, det kan være en opgave fra deres daligdag hvor de kan bruge deres
+        nyfunde evner. Alt efter hvor store opgaver de finder på, kan vi evt.
+        bruge 30/45 minutter på en introduktion til API'er, så man kan udvide
+        sin nuværende data med resultater fra nettet.
+
+    \end{description}
+
+\section{Teknisk information}
+    Vi planlægger at bruge Python 3 fortolkeren da vi undgår indkodningsfejl ved
+    specialtegn og installationen er nemmere for windows baseret maskiner.
+    Som editor bruger vi \emph{atom} der er gratis og open source med udvidelser
+    der gør udviklingsprocessen mere gnidningsfrit.
+
+
+\section{Økonomi}
+    Vi forventer at bruge $1.5$ dage på udarbejdelse af slide og opgaver til en
+    samlet pris på $7000$kr.
+
+\section{Beskrivelse af os}
+
+% \begin{description}
+%     \item[Billeder:] vedhæftet mailen.
+%     \item[Navne:] Benjamin Rotendahl \& Arinbjörn Brandsson
+%     \item[Affiliation:] Computer Science students at the University of Copenhagen.
+%     \item[E-mail:] Benjamin@Rotendahl.dk \&
+%     \item[Twitter:] Vi bruger ikke rigtig twitter
+%     \item[* Github account if you have one:]
+% \end{description}
+%
+%
+%
+% * link to blog or other web presence:
+% * Title of your session/invited talk
+% * 2-3 sentences describing the content of your teaching/invited talk. Specificer her hvis deltagerne skal installere software, programmer, applikationer, osv.
+
+
+
+
+\end{document}
