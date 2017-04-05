@@ -1,0 +1,18 @@
+\vspace*{-9pt}
+  \begin{block}{Eksempel:}
+    \begin{python}
+import csv
+import re
+def findName(reader, name):
+    results = []
+    for row in reader:
+        # [^\w] fanger alle tegn som
+        # ikke er bogstaver eller tal
+        temp = re.sub(r'[^\w]', '' ,row['name'])
+        if temp == '':
+            continue
+        if  temp.lower() == name.lower():
+            results.append(row['id'])
+    return results
+    \end{python}
+  \end{block}
