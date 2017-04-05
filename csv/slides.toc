@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {1}{CSV-Filer}{3}{0}{1}
+\beamer@sectionintoc {2}{CSV-Filer i Programmering}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Indl\IeC {\ae }sning af CSV-Filer}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Bearbejdning af CSV-Data}{6}{0}{2}
+\beamer@sectionintoc {3}{Indskrivning af CSV-Filer}{9}{0}{3}
+\beamer@sectionintoc {4}{Problemer og L\IeC {\o }sninger med Datas\IeC {\ae }t}{11}{0}{4}
+\beamer@subsectionintoc {4}{1}{\IeC {\'E}t Resultat}{12}{0}{4}
+\beamer@subsectionintoc {4}{2}{Manglende Data}{13}{0}{4}
+\beamer@subsectionintoc {4}{3}{Forkert-Formatteret Data}{15}{0}{4}
+\beamer@subsectionintoc {4}{4}{Specialkarakterer}{16}{0}{4}

@@ -1,0 +1,389 @@
+\documentclass[aspectratio=169,12pt,t]{beamer}
+%\usetheme[greyauthor, % Grå tekst forfatter som KU vil have
+%         unit=ics, % Ændre til NAT, KU, eller unit=ics (diku)
+%         dk, % Sprog
+%         %style=simple, % Vandmærke eller billede
+%         footstyle=low, % Fjern stor footer
+%         wmark, % vandmærke på hver side
+%         logoplace=left % Logo til venstre
+%         %,sidebar % makes sidebar
+%         ]{Frederiksberg}
+% nat for Science, ku for generic or unit=ics for DIKU
+% Tilføj style=simple for vandmærke
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+
+\mode<presentation>                                                                              
+{                                                                                                
+  \usetheme{Copenhagen}                                                                          
+  \usecolortheme{default}                                                                        
+  \usefonttheme{default}                                                                         
+  \setbeamertemplate{navigation symbols}{}                                                       
+  \setbeamertemplate{caption}[numbered]                                                          
+}             
+\usepackage{listings} % Pakke til kode
+\usepackage{pslatex}        % pæn skrift
+\usepackage[utf8]{inputenc} % Implementerer Unicode
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\addtobeamertemplate{block begin}{\vspace*{-3pt}}{}
+\addtobeamertemplate{block end}{}{\vspace*{-3pt}}
+
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self, with},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false            % 
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\title{Comma-Separated Values (CSV)}
+\subtitle{Håndtering, Søgning og Analyse af CSV-Filer}
+\author{
+        Arinbjörn Brandsson \\
+        Benjamin Rotendahl  \\
+}
+
+\date[]{\today}
+
+
+\begin{document}
+
+\frame[plain]{\titlepage}
+ \frame{\tableofcontents}
+
+\section{CSV-Filer}
+
+\begin{frame}[fragile]
+  \frametitle{Opbygningen af en CSV-Fil}
+  \vspace*{-12pt}
+  \begin{block}{Første linje beskriver headernavnene, resten er data}
+    \begin{lstlisting}
+      id,name,description,menus_appeared                                                
+      1,Consomme printaniere royal,,8
+      2,Chicken gumbo,,111
+      3,Tomato aux croutons,,13
+    \end{lstlisting}
+  \end{block}
+  \begin{block}{CSV-Filer kan visualiseres som en tabel}
+  \begin{table}
+    \begin{tabular}{ | l | l | l | l | }
+      \hline
+      id&name&description&menus\_appeared\\                                                
+      \hline
+      1&Consomme printaniere royal&&8\\
+      \hline
+      2&Chicken gumbo&&111\\
+      \hline
+      3&Tomato aux croutons&&13\\\hline
+    \end{tabular}
+  \end{table}
+  \end{block}
+\end{frame}
+
+\section{CSV-Filer i Programmering}
+\subsection{Indlæsning af CSV-Filer}
+\begin{frame}[fragile]
+  \frametitle{Indlæsning af CSV-Filer}
+  \vspace*{-14pt}
+  \begin{block}{En måde man kan loade CSV-Filer}
+    \begin{python}
+# Importer csv biblioteket
+import csv
+# Aaben filen, og kald den csv_file
+with open('filename.csv') as csv_file:
+    # Opret en laeser til csv_file, 
+    # og kald den reader
+    reader = csv.DictReader(csv_file)
+  \end{python}
+  Et godt tip er at loade filen ind i sin main funktion, og give læseren 
+  som argument til andre funktioner. 
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \vspace*{-9pt}
+  \begin{block}{Eksempel på en main funktion}
+    \begin{python}
+# Importer csv biblioteket
+import csv
+
+# Kode her...
+
+def main():
+    with open('file.csv') as csv_file:
+       file_reader = csv.DictReader(csv_file)
+       print(findNoget(file_reader))
+
+# Denne if-statement bliver altid kaldt
+if __name__ == '__main__':
+    main()
+    \end{python}
+  \end{block}
+\end{frame}
+
+\subsection{Bearbejdning af CSV-Data}
+\begin{frame}[fragile]
+  \frametitle{Bearbejdning af CSV-Data}
+  \vspace*{-12pt}
+  \begin{block}{Hvordan arbejder man med læseren?}
+    \begin{itemize}
+      \item Læseren kan læse filens linjer
+      \item Læseren kan huske headersne, og har hver linje i en dictionary
+      \item Læseren kan ikke ændre i CSV-filen
+      \item Så vi skal kunne gennemgå linjerne via læseren
+    \end{itemize}
+  \end{block}
+
+  \begin{block}{Den oplagte løsning:}
+    Vi kan bruge løkker!
+    \begin{python}
+def findNoget(reader):
+    for row in reader:
+        print(row['name'])
+    \end{python}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{(Simple) Eksempler}
+  \vspace*{-14pt}
+\begin{block}{Find retter, givet ved name, og returnér deres ID
+              (ikke case-sensitive)}
+\begin{python}
+def findName(reader, name):
+    results = []
+    for row in reader:
+        if row['name'].lower() == name.lower():
+            results.append(row['id'])
+    return results
+\end{python}
+\end{block}
+\begin{block}{Problem ved denne løsning:}
+Tager ikke højde for specialtegn som vi måske vil ignorere, såsom komma 
+      (mere om dette senere)
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \vspace*{-11pt}
+    \begin{block}{Find retter som var sidst i et menukort i 1942}
+    \begin{python}
+def find1942(reader):
+    results = []
+    for row in reader:
+        if int(row['last_appeared']) == 1942:
+            results.append(row['name'])
+    return results
+    \end{python}
+  \end{block}
+\begin{block}{Hvad {\tt int()} gør}
+  \begin{itemize}
+    \item Filens data bliver læst ind som tekststrenge
+    \item Uden {\tt int()} ville sammenligningen være {\tt '1942' == 1942}
+    \item Hvorimod {\tt int('1942') = 1942}
+    \item Det samme kan gøres med {\tt floats}, for eksempel {\tt float('0.8')} 
+  \end{itemize}
+\end{block}
+\end{frame}
+
+\section{Indskrivning af CSV-Filer}
+\begin{frame}[fragile]
+  \frametitle{Indskrivning af CSV-Filer}
+  \begin{block}{Men hvad hvis vi vil lave nye CSV-filer?}
+    \begin{itemize}
+      \item En læser kan kun læse rækker
+      \item Så vi skal bruger en skriver til at skrive i en fil
+      \item Virker næsten på samme måde
+      \item Man kan enten skrive ind en række ad gangen, eller skrive mange 
+            ræker ind på samme tid ({\tt writerow()} og {\tt writerows()})
+    \end{itemize}
+  \end{block}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Eksempel på at Gemme en Fil}
+  \begin{block}{Eksempel: Gem retter som har været i en menu 10 eller flere gange}
+    \begin{python}
+def save15(reader, fileName):
+    with open(fileName, 'w') as save_file:
+        headers = reader.fieldnames
+        writer = csv.DictWriter(save_file, 
+                                fieldnames=headers)
+        writer.writeheader()
+        for row in reader:
+            if int(row['times_appeared']) > 14:
+                writer.writerow(row)
+    return True 
+    \end{python}
+  \end{block}
+\end{frame}
+
+\section{Problemer og Løsninger med Datasæt}
+\begin{frame}
+\begin{block}{Mulige problemer man kan løbe ind i:}
+  \begin{itemize}
+    \item Man har kun brug for ét resultat 
+    \item Manglende data i datasættet
+    \item Dataen er forkert formatteret % Delimiters?
+    \item Dataen indeholder specialtegn
+  \end{itemize}
+\end{block} 
+\end{frame}
+
+\subsection{Ét Resultat}
+\begin{frame}[fragile]
+\vspace*{-12pt}
+  \frametitle{Ét Resultat}
+  \begin{block}{Men hvad nu hvis vi kun vil have ét datapunkt?}
+    \begin{itemize}
+      \item Python har en del kontrolstrukturer - for eksempel til at afbryde 
+            løkker tidligt.
+      \item Siden vores læser bruger en løkke, kan vi bruge kommandoen 
+            {\tt break} til at bryde ud af en løkke øjeblikkeligt
+    \end{itemize}
+  \end{block}
+  \begin{block}{Eksempel - stopper når vi finder id 3}
+    \begin{python}
+def foo(reader):
+    for row in reader:
+        if int(row['id']) == 3:
+            temp = row
+            break
+    return temp
+    \end{python}
+  \end{block}
+\end{frame}
+
+\subsection{Manglende Data}
+\begin{frame}[fragile]
+  \frametitle{Manglende Data}
+  \vspace*{-14pt}
+    \begin{block}{Hvad gør man hvis der mangler data?}
+    \begin{itemize}
+      \item Nogle gange mangler datasættet datapunkter
+      \item Nogle sammenligninger med manglende datapunkter kan få programmet 
+            til at crashe
+      \item For at forhindre dette, skal man tage højde for manglende 
+            datapunkter (I Python denoteret med den tomme streng, {\tt ''}). 
+            Her har man to muligheder:
+            \begin{enumerate} 
+              \item Inkludere rækken alligevel (nemt)
+              \item Ignorere rækken (også nemt)
+            \end{enumerate}
+      \item I første tilfælde gør man som man har gjort før
+      \item I andet tilfælde bruger man kommandoen {\tt continue}, som 
+            afbryder den nuværende iteration, og går direkte til den næste 
+            iteration.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{block}{Eksempel fra Før}
+    \begin{python}
+def findName(reader, name):
+    results = []
+    for row in reader:
+        temp = row['name']
+        if temp == '':
+            continue
+        if temp.lower() == name.lower():
+            results.append(row['id'])
+    return results
+    \end{python}
+  \end{block}
+  \begin{block}{Bemærk:}
+    {\tt continue} kan blive simuleret med {\tt if:... else:...}  
+  \end{block}
+\end{frame}
+
+\subsection{Forkert-Formatteret Data}
+\begin{frame}[fragile]
+  \frametitle{Forkert-Formatteret Data}
+  \begin{block}{Nogle gange er dataen ikke komma-separeret}
+    \begin{itemize}
+      \item Nogle gange er dataen separeret med noget andet end et komma
+      \item Løsning: Fortæl {\tt csv.DictReader} hvad den nye delimiter er
+    \end{itemize}
+  \end{block}
+  \begin{block}{Eksempel: CSV-fil med punktum i stedet for kommaer}
+    \begin{python}
+with open('punktummer.csv') as csv_file:
+    reader = csv.DictReader(csv_file, delimiter='.')
+    # Kode her 
+    \end{python}
+  \end{block}
+\end{frame}
+
+\subsection{Specialkarakterer}
+\begin{frame}[fragile]
+  \frametitle{Specialkarakterer}
+  \begin{block}{Specialkarakterer i ord}
+    \begin{itemize}
+      \item Nogle gange indeholder dataen specialkarakterer som man ikke er 
+            interesseret i
+      \item Problematik ved dette: {\tt 'hello,' == 'hello'}
+      \item Løsning: Skrub specialkaraktererne fra
+      \begin{itemize}
+          \item Vi kommer til at bruge sort magi til dette
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \vspace*{-9pt}
+  \begin{block}{Eksempel:}
+    \begin{python}
+import csv
+import re
+def findName(reader, name):
+    results = []
+    for row in reader:
+        # [^\w] fanger alle tegn som 
+        # ikke er bogstaver eller tal
+        temp = re.sub(r'[^\w]', '' ,row['name'])
+        if temp == '':
+            continue
+        if  temp.lower() == name.lower():
+            results.append(row['id'])
+    return results
+    \end{python}
+  \end{block}
+\end{frame}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+

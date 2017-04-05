@@ -1,0 +1,58 @@
+\beamer@endinputifotherversion {3.24pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\sectionentry {1}{CSV-Filer}{3}{CSV-Filer}{0}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\slideentry {1}{0}{3}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\sectionentry {2}{CSV-Filer i Programmering}{4}{CSV-Filer i Programmering}{0}}
+\headcommand {\beamer@sectionpages {3}{3}}
+\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{4}{Indl\IeC {\ae }sning af CSV-Filer}}\headcommand {\beamer@subsectionpages {4}{3}}
+\headcommand {\slideentry {2}{1}{1}{4/4}{Indl\IeC {\ae }sning af CSV-Filer}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\slideentry {2}{1}{2}{5/5}{Indl\IeC {\ae }sning af CSV-Filer}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{6}{Bearbejdning af CSV-Data}}\headcommand {\beamer@subsectionpages {4}{5}}
+\headcommand {\slideentry {2}{2}{1}{6/6}{Bearbejdning af CSV-Data}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\slideentry {2}{2}{2}{7/7}{Bearbejdning af CSV-Data}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\slideentry {2}{2}{3}{8/8}{Bearbejdning af CSV-Data}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\sectionentry {3}{Indskrivning af CSV-Filer}{9}{Indskrivning af CSV-Filer}{0}}
+\headcommand {\beamer@sectionpages {4}{8}}
+\headcommand {\beamer@subsectionpages {6}{8}}
+\headcommand {\slideentry {3}{0}{4}{9/9}{}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\slideentry {3}{0}{5}{10/10}{}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\sectionentry {4}{Problemer og L\IeC {\o }sninger med Datas\IeC {\ae }t}{11}{Problemer og L\IeC {\o }sninger med Datas\IeC {\ae }t}{0}}
+\headcommand {\beamer@sectionpages {9}{10}}
+\headcommand {\beamer@subsectionpages {9}{10}}
+\headcommand {\slideentry {4}{0}{6}{11/11}{}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{12}{\IeC {\'E}t Resultat}}\headcommand {\beamer@subsectionpages {11}{11}}
+\headcommand {\slideentry {4}{1}{1}{12/12}{\IeC {\'E}t Resultat}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{13}{Manglende Data}}\headcommand {\beamer@subsectionpages {12}{12}}
+\headcommand {\slideentry {4}{2}{1}{13/13}{Manglende Data}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\slideentry {4}{2}{2}{14/14}{Manglende Data}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{15}{Forkert-Formatteret Data}}\headcommand {\beamer@subsectionpages {13}{14}}
+\headcommand {\slideentry {4}{3}{1}{15/15}{Forkert-Formatteret Data}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\beamer@subsectionentry {0}{4}{4}{16}{Specialkarakterer}}\headcommand {\beamer@subsectionpages {15}{15}}
+\headcommand {\slideentry {4}{4}{1}{16/16}{Specialkarakterer}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\slideentry {4}{4}{2}{17/17}{Specialkarakterer}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\beamer@partpages {1}{17}}
+\headcommand {\beamer@subsectionpages {16}{17}}
+\headcommand {\beamer@sectionpages {11}{17}}
+\headcommand {\beamer@documentpages {17}}
+\headcommand {\def \inserttotalframenumber {17}}
